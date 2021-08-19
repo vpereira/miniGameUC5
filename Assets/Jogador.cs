@@ -8,6 +8,8 @@ public class Jogador : MonoBehaviour
     private int _totalPontos = 0;
     private int _vidas = 3;
 
+    private Animator animator;
+
     private bool facingRight = true;
 
     private bool isGrounded = true;
@@ -47,12 +49,14 @@ public class Jogador : MonoBehaviour
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && (isGrounded || Mathf.Abs(rb.velocity.x) > 0.01f))
         {
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
+            animator.SetBool("isRunning", true);
         }
         else
         {
             if (isGrounded || rb.velocity.magnitude < 0.01f)
             {
                 moveDirection = 0;
+                animator.SetBool("isRunning", false);
             }
         }
 
@@ -85,6 +89,7 @@ public class Jogador : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
     }
