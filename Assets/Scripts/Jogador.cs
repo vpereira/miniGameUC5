@@ -6,7 +6,7 @@ public class Jogador : MonoBehaviour
 {
 
     private int _totalPontos = 0;
-    private int _vidas = 3;
+    private int _vidas = 10;
 
     private Animator animator;
 
@@ -32,19 +32,20 @@ public class Jogador : MonoBehaviour
         get { return _totalPontos; }
     }
 
-    public void TiraVida()
+    public void TiraVida(int vidasPerdidas)
     {
         if (_vidas > 0)
-            _vidas -= 1;
+            _vidas -= vidasPerdidas;
     }
 
-    public void AddPontos()
+    public void AddPontos(int pontos)
     {
-        _totalPontos += 10;
+        _totalPontos += pontos;
     }
 
     private void Update()
     {
+
         // Movement controls
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && (isGrounded || Mathf.Abs(rb.velocity.x) > 0.01f))
         {
