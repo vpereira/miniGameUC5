@@ -156,7 +156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 6.5
   maxSpeed: 3
-  rb: {fileID: 0}
 --- !u!50 &158948559
 Rigidbody2D:
   serializedVersion: 4
@@ -173,7 +172,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b58b49cbb1da8ac468c507ce8beb1253, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
