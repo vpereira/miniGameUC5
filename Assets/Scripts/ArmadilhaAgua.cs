@@ -24,7 +24,6 @@ public class ArmadilhaAgua : MonoBehaviour
 
             if (collided == true)
             {
-                Debug.Log("TiraVida");
                 jogador.TiraVida(1);
             }
         }

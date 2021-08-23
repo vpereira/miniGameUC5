@@ -22,9 +22,18 @@ public class Jogador : MonoBehaviour
     private Rigidbody2D rb;
 
 
+    public bool IsGrounded
+    {
+        get { return isGrounded; }
+    }
     public int Vidas
     {
         get { return _vidas; }
+    }
+
+    public void SetGrounded(bool g)
+    {
+        isGrounded = g;
     }
 
     public int Pontos
@@ -45,6 +54,7 @@ public class Jogador : MonoBehaviour
 
     private void Update()
     {
+
 
         // Movement controls
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && (isGrounded || Mathf.Abs(rb.velocity.x) > 0.01f))
