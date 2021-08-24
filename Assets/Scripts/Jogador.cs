@@ -13,6 +13,7 @@ public class Jogador : MonoBehaviour
     private bool facingRight = true;
 
     private bool isGrounded = true;
+    private bool isJumping = false;
 
     public float jumpHeight = 6.5f;
     public float maxSpeed = 3f;
@@ -36,6 +37,11 @@ public class Jogador : MonoBehaviour
         isGrounded = g;
     }
 
+    public void SetJumping(bool g)
+    {
+        isJumping = g;
+    }
+
     public int Pontos
     {
         get { return _totalPontos; }
@@ -57,10 +63,14 @@ public class Jogador : MonoBehaviour
 
 
         // Movement controls
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && (isGrounded || Mathf.Abs(rb.velocity.x) > 0.01f))
+        // TODO
+        // die jumps sehen kacke aus.
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && (isGrounded || isJumping || Mathf.Abs(rb.velocity.x) > 0.01f))
         {
             moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
-            animator.SetBool("isRunning", true);
+
+            if(!isJumping)
+                animator.SetBool("isRunning", true);
         }
         else
         {
@@ -89,7 +99,6 @@ public class Jogador : MonoBehaviour
         // Jumping
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            // rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
             rb.velocity = Vector2.up * jumpHeight;
         }
     }

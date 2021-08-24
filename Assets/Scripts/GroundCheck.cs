@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ground : MonoBehaviour
+public class GroundCheck : MonoBehaviour
 {
     private Jogador jogador;
 
@@ -14,14 +14,13 @@ public class Ground : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.CompareTag("Player"))
-            jogador.SetGrounded(true);
+        jogador.SetGrounded(true);
+        jogador.SetJumping(true);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
-            jogador.SetGrounded(false);
+       jogador.SetGrounded(false);
+       jogador.SetJumping(false);
     }
-
 }
