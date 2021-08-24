@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2a84e54c43aef4f83e7a8be8d557fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 6.5
+  jumpHeight: 4
   maxSpeed: 3
 --- !u!50 &158948559
 Rigidbody2D:
@@ -326,6 +326,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transformPosFim: {fileID: 7224431248685289649}
+--- !u!61 &286212401
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286212398}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.116775066}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.38, y: 0.38}
+    newSize: {x: 0.38, y: 0.38}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.38, y: 0.14644986}
+  m_EdgeRadius: 0
 --- !u!1 &313779053 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4429714074272367994, guid: c4ed6400abefdd44fb2dd7f2de9442bf,

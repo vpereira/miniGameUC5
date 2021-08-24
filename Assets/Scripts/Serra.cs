@@ -8,6 +8,8 @@ public class Serra : MonoBehaviour
     private Vector3 posFim;
     private Vector3 proximaPosicao;
 
+    private Jogador jogador;
+
     private Animator animator;
     private float _speed = 0.2f;
 
@@ -20,6 +22,7 @@ public class Serra : MonoBehaviour
         posInicio = transform.position;
         posFim = transformPosFim.position;
         proximaPosicao = posFim;
+        jogador = GameObject.FindWithTag("Player").GetComponent<Jogador>();
     }
 
     private void Start()
@@ -33,5 +36,13 @@ public class Serra : MonoBehaviour
         // invert destination
         if (Vector3.Distance(transform.position, proximaPosicao) <= 0.1f)
             proximaPosicao = proximaPosicao != posInicio ? posInicio : posFim;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            jogador.TiraPontos(3);
+        }
     }
 }

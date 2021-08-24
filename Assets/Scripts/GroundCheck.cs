@@ -15,12 +15,12 @@ public class GroundCheck : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         jogador.SetGrounded(true);
-        jogador.SetJumping(true);
+        jogador.SetJumping(false);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
        jogador.SetGrounded(false);
-       jogador.SetJumping(false);
+       jogador.SetJumping(true);
     }
 }

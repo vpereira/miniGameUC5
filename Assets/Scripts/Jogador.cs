@@ -15,7 +15,7 @@ public class Jogador : MonoBehaviour
     private bool isGrounded = true;
     private bool isJumping = false;
 
-    public float jumpHeight = 6.5f;
+    public float jumpHeight = 3.5f;
     public float maxSpeed = 3f;
 
     private float moveDirection = 0f;
@@ -45,6 +45,11 @@ public class Jogador : MonoBehaviour
     public int Pontos
     {
         get { return _totalPontos; }
+    }
+
+    public void TiraPontos(int pontos)
+    {
+        _totalPontos -= pontos;
     }
 
     public void TiraVida(int vidasPerdidas)
