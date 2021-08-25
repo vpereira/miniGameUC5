@@ -15,8 +15,8 @@ public class Jogador : MonoBehaviour
     private bool isGrounded = true;
     private bool isJumping = false;
 
-    public float jumpHeight = 3.5f;
-    public float maxSpeed = 3f;
+    public float jumpHeight = 4f;
+    public float maxSpeed = 2f;
 
     private float moveDirection = 0f;
 
@@ -65,8 +65,6 @@ public class Jogador : MonoBehaviour
 
     private void Update()
     {
-
-
         // Movement controls
         // TODO
         // die jumps sehen kacke aus.
