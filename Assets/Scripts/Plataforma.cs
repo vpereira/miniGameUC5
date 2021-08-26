@@ -18,7 +18,9 @@ public class Plataforma : MonoBehaviour
         posInicio = transform.position;
         posFim = transformPosFim.position;
         proximaPosicao = posFim;
+
     }
+
     private void Update()
     {
         transform.localPosition = Vector3.MoveTowards(transform.position, proximaPosicao, _speed * Time.deltaTime);
@@ -26,5 +28,16 @@ public class Plataforma : MonoBehaviour
         // invert destination
         if(Vector3.Distance(transform.position, proximaPosicao) <= 0.1f)
             proximaPosicao = proximaPosicao != posInicio ? posInicio : posFim;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        collision.transform.parent = transform;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        collision.transform.parent = null;
     }
 }
