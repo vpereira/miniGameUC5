@@ -10,36 +10,27 @@ public class Jogador : MonoBehaviour
 
     private Animator animator;
 
+    private float moveInput;
+
     private bool facingRight = true;
 
     private bool isGrounded = true;
-    private bool isJumping = false;
+
+    private bool isMoving = false;
+
+    public Transform groundCheck;
+    public float checkRadius;
+    public LayerMask whatIsGround;
 
     public float jumpHeight = 4f;
     public float maxSpeed = 2f;
 
-    private float moveDirection = 0f;
-
     private Rigidbody2D rb;
 
 
-    public bool IsGrounded
-    {
-        get { return isGrounded; }
-    }
     public int Vidas
     {
         get { return _vidas; }
-    }
-
-    public void SetGrounded(bool g)
-    {
-        isGrounded = g;
-    }
-
-    public void SetJumping(bool g)
-    {
-        isJumping = g;
     }
 
     public int Pontos
@@ -65,50 +56,43 @@ public class Jogador : MonoBehaviour
 
     private void Update()
     {
-        // Movement controls
-        // TODO
-        // die jumps sehen kacke aus.
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && (isGrounded || isJumping || Mathf.Abs(rb.velocity.x) > 0.01f))
-        {
-            moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
-
-            if(!isJumping)
-                animator.SetBool("isRunning", true);
-        }
-        else
-        {
-            if (isGrounded || rb.velocity.magnitude < 0.01f)
-            {
-                moveDirection = 0;
-                animator.SetBool("isRunning", false);
-            }
-        }
-
-        // Change facing direction
-        if (moveDirection != 0)
-        {
-            if (moveDirection > 0 && !facingRight)
-            {
-                facingRight = true;
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-            }
-            if (moveDirection < 0 && facingRight)
-            {
-                facingRight = false;
-                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-            }
-        }
-
         // Jumping
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = Vector2.up * jumpHeight;
+        } 
+
+        if (isMoving)
+            animator.SetBool("isRunning", true);
+        else
+            animator.SetBool("isRunning", false);
+
+    }
+    private void FixedUpdate()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+
+        moveInput = Input.GetAxis("Horizontal");
+
+        rb.velocity = new Vector2(moveInput * maxSpeed, rb.velocity.y);
+
+        isMoving = !Mathf.Approximately(rb.velocity.magnitude, 0f);
+
+        if(facingRight == false && moveInput > 0)
+        {
+            Flip();
+        } else if(facingRight == true && moveInput < 0 )
+        {
+            Flip();
         }
     }
 
-    private void FixedUpdate()
+    private void Flip()
     {
-        rb.velocity = new Vector2((moveDirection) * maxSpeed, rb.velocity.y);
+        facingRight = !facingRight;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
     }
 
     private void Awake()
