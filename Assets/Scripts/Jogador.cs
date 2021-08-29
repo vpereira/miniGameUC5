@@ -12,6 +12,8 @@ public class Jogador : MonoBehaviour
 
     private float moveInput;
 
+    private bool jump = false;
+
     private bool facingRight = true;
 
     private bool isGrounded = true;
@@ -59,8 +61,10 @@ public class Jogador : MonoBehaviour
         // Jumping
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.velocity = Vector2.up * jumpHeight;
+            jump = true;
         } 
+
+        moveInput = Input.GetAxis("Horizontal");
 
         if (isMoving)
             animator.SetBool("isRunning", true);
@@ -68,20 +72,39 @@ public class Jogador : MonoBehaviour
             animator.SetBool("isRunning", false);
 
     }
+
+    private void Jump()
+    {
+        if(jump)
+        {
+            rb.velocity = Vector2.up * jumpHeight;
+            jump = false;
+        }
+
+    }
+
+    private void Move()
+    {
+        rb.velocity = new Vector2(moveInput * maxSpeed, rb.velocity.y);
+    }
+
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-
-        moveInput = Input.GetAxis("Horizontal");
-
-        rb.velocity = new Vector2(moveInput * maxSpeed, rb.velocity.y);
-
         isMoving = !Mathf.Approximately(rb.velocity.magnitude, 0f);
 
-        if(facingRight == false && moveInput > 0)
+        if(isGrounded)
+        {
+            Jump();
+        }
+
+        Move();
+
+
+        if(!facingRight && moveInput > 0)
         {
             Flip();
-        } else if(facingRight == true && moveInput < 0 )
+        } else if(facingRight && moveInput < 0 )
         {
             Flip();
         }
