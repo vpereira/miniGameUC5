@@ -42,7 +42,7 @@ public class Serra : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            jogador.TiraPontos(3);
+            jogador.TiraVida(3);
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Jogador : MonoBehaviour
 {
@@ -58,6 +59,10 @@ public class Jogador : MonoBehaviour
 
     private void Update()
     {
+        // Se os pontos forem =< 0 reload a cena
+        if(_vidas <= 0)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
         // Jumping
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
