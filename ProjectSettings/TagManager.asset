@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Plataforma
   - Ground
+  - Healthbar
   layers:
   - Default
   - TransparentFX

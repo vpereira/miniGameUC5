@@ -7,7 +7,8 @@ public class Jogador : MonoBehaviour
 {
 
     private int _totalPontos = 0;
-    private int _vidas = 10;
+    private int _maxVidas = 10;
+    private int _vidas = 0;
 
     private Animator animator;
 
@@ -30,10 +31,22 @@ public class Jogador : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public SliderControl healthbar;
 
+    private void Start()
+    {
+        _vidas = _maxVidas;
+
+        healthbar.SetHealth(_vidas, _maxVidas);
+    }
     public int Vidas
     {
         get { return _vidas; }
+    }
+
+    public int MaxVidas
+    {
+        get { return _maxVidas; }
     }
 
     public int Pontos
@@ -48,6 +61,8 @@ public class Jogador : MonoBehaviour
 
     public void TiraVida(int vidasPerdidas)
     {
+        healthbar.SetHealth(_vidas, _maxVidas);
+
         if (_vidas > 0)
             _vidas -= vidasPerdidas;
     }
@@ -59,8 +74,9 @@ public class Jogador : MonoBehaviour
 
     private void Update()
     {
+
         // Se os pontos forem =< 0 reload a cena
-        if(_vidas <= 0)
+        if (_vidas <= 0)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         // Jumping
