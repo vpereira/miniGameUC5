@@ -43,13 +43,11 @@ public class ArmadilhaFogo : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
 
-            if (collided == true)
+            if (collided && animator.GetBool("on"))
             {
                 jogador.TiraVida(1);
             }
         }
-
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
