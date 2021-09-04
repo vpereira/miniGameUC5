@@ -5,7 +5,7 @@ using UnityEngine;
 public class Coletavel : MonoBehaviour
 {
 
-    private int _pontosColetavel = 3;
+    public int pontosColetavel = 3;
 
     private Jogador jogador;
 
@@ -21,8 +21,7 @@ public class Coletavel : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            jogador.AddPontos(_pontosColetavel);
-            // TODO add animation
+            jogador.AddPontos(pontosColetavel);
             animator.SetBool("coletou", true);
             Destroy(gameObject, 1.5f);
         }
