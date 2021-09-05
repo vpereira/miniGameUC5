@@ -388,7 +388,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: b58b49cbb1da8ac468c507ce8beb1253, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &158948560
 BoxCollider2D:
@@ -805,7 +805,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 690437515}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b58b49cbb1da8ac468c507ce8beb1253, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2241,7 +2241,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.06795585}
+  m_Offset: {x: 0.00000011920929, y: 0.04774326}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2252,7 +2252,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.028467536}
+  m_Size: {x: 0.36331296, y: 0.06889272}
   m_EdgeRadius: 0
 --- !u!114 &1247087159
 MonoBehaviour:
@@ -7454,6 +7454,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 286212401, guid: 3a41851a171bdb24b89f0b7f5f5ee1d3, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4131766
+      objectReference: {fileID: 0}
+    - target: {fileID: 286212401, guid: 3a41851a171bdb24b89f0b7f5f5ee1d3, type: 3}
+      propertyPath: m_Size.y
+      value: 0.17057842
+      objectReference: {fileID: 0}
+    - target: {fileID: 286212401, guid: 3a41851a171bdb24b89f0b7f5f5ee1d3, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0045241416
+      objectReference: {fileID: 0}
+    - target: {fileID: 286212401, guid: 3a41851a171bdb24b89f0b7f5f5ee1d3, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.10471079
+      objectReference: {fileID: 0}
     - target: {fileID: 7224431249485275587, guid: 3a41851a171bdb24b89f0b7f5f5ee1d3,
         type: 3}
       propertyPath: m_Name
