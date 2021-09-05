@@ -29,6 +29,8 @@ public class Jogador : MonoBehaviour
     public float jumpHeight = 4f;
     public float maxSpeed = 2f;
 
+    private float hitTimer = 1f;
+
     private Rigidbody2D rb;
 
     public SliderControl healthbar;
@@ -62,6 +64,7 @@ public class Jogador : MonoBehaviour
     public void TiraVida(int vidasPerdidas)
     {
         healthbar.SetHealth(_vidas, _maxVidas);
+        animator.SetBool("hit", true);
 
         if (_vidas > 0)
             _vidas -= vidasPerdidas;
@@ -91,6 +94,18 @@ public class Jogador : MonoBehaviour
             animator.SetBool("isRunning", true);
         else
             animator.SetBool("isRunning", false);
+
+        if(animator.GetBool("hit"))
+        {
+            if(hitTimer > 0)
+            {
+                hitTimer -= Time.deltaTime;
+            } else
+            {
+                animator.SetBool("hit", false);
+                hitTimer = 1f;
+            }
+        }
 
     }
 
