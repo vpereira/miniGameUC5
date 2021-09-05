@@ -884,6 +884,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1387422240593298118, guid: 0431b0ad693dd5948ae9172b082ed6f0,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.2743276
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387422240593298118, guid: 0431b0ad693dd5948ae9172b082ed6f0,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.45798832
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353118290785369550, guid: 0431b0ad693dd5948ae9172b082ed6f0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.277
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353118290785369550, guid: 0431b0ad693dd5948ae9172b082ed6f0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6275144350408821773, guid: 0431b0ad693dd5948ae9172b082ed6f0,
         type: 3}
       propertyPath: m_FlipX
@@ -893,6 +913,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Inimigo planta (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023835781093843398, guid: 0431b0ad693dd5948ae9172b082ed6f0,
+        type: 3}
+      propertyPath: fireballTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0431b0ad693dd5948ae9172b082ed6f0, type: 3}
@@ -7594,10 +7619,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3353118290785369550, guid: 0431b0ad693dd5948ae9172b082ed6f0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.126
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353118290785369550, guid: 0431b0ad693dd5948ae9172b082ed6f0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8224606553109372145, guid: 0431b0ad693dd5948ae9172b082ed6f0,
         type: 3}
       propertyPath: m_Name
       value: Inimigo planta
+      objectReference: {fileID: 0}
+    - target: {fileID: 9023835781093843398, guid: 0431b0ad693dd5948ae9172b082ed6f0,
+        type: 3}
+      propertyPath: fireballTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0431b0ad693dd5948ae9172b082ed6f0, type: 3}

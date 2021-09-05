@@ -8,28 +8,40 @@ public class InimigoPlanta : MonoBehaviour
 
     bool inimigoOnRange = false;
 
-    IEnumerator OnTriggerEnter2D(Collider2D collision)
+    [SerializeField]
+    private float fireballTime = 1f;
+
+    private float fireballTimer = 1f;
+
+
+    private void Awake()
     {
-        if(collision.CompareTag("Player"))
-            inimigoOnRange = true;
+        fireballTimer = fireballTime; 
+    }
 
-        while(inimigoOnRange)
+    private void Update()
+    {
+        if(inimigoOnRange)
         {
-            yield return new WaitForSeconds(1);
+            fireballTimer -= Time.deltaTime;
 
-            if (inimigoOnRange)
+            if(fireballTimer <= 0f)
             {
-                var startPosition = transform.position;
+                var startPosition = transform.Find("FacingTo").position;
                 Instantiate(projetil, startPosition, Quaternion.identity);
+                fireballTimer = fireballTime;
             }
         }
-
-
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            inimigoOnRange = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
             inimigoOnRange = false;
     }
 }
