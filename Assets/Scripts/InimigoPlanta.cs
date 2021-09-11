@@ -14,11 +14,25 @@ public class InimigoPlanta : MonoBehaviour
     private float fireballTimer = 1f;
 
 
+    private Animator animator;
+
     private void Awake()
     {
-        fireballTimer = fireballTime; 
+        fireballTimer = fireballTime;
     }
 
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    private IEnumerator WaitAndShoot()
+    {
+        yield return new WaitForSeconds(0.5f);
+        var startPosition = transform.Find("FacingTo").position;
+        Instantiate(projetil, startPosition, Quaternion.identity);
+        animator.SetBool("onSight", false);
+    }
     private void Update()
     {
         if(inimigoOnRange)
@@ -27,12 +41,13 @@ public class InimigoPlanta : MonoBehaviour
 
             if(fireballTimer <= 0f)
             {
-                var startPosition = transform.Find("FacingTo").position;
-                Instantiate(projetil, startPosition, Quaternion.identity);
+                animator.SetBool("onSight", true);
+                StartCoroutine(WaitAndShoot());
                 fireballTimer = fireballTime;
             }
         }
     }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
