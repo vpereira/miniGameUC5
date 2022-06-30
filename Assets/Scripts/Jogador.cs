@@ -11,19 +11,14 @@ public class Jogador : MonoBehaviour
     private int _vidas = 0;
 
     private Animator animator;
+    private BoxCollider2D bc;
 
     private float moveInput;
 
-    private bool jump = false;
-
     private bool facingRight = true;
-
-    private bool isGrounded = true;
 
     private bool isMoving = false;
 
-    public Transform groundCheck;
-    public float checkRadius;
     public LayerMask whatIsGround;
 
     public float jumpHeight = 4f;
@@ -34,6 +29,7 @@ public class Jogador : MonoBehaviour
     private Rigidbody2D rb;
 
     public SliderControl healthbar;
+
 
     private void Start()
     {
@@ -83,12 +79,14 @@ public class Jogador : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         // Jumping
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            jump = true;
+            Jump();
         } 
 
         moveInput = Input.GetAxis("Horizontal");
+
+        isMoving = !Mathf.Approximately(rb.velocity.magnitude, 0f);
 
         if (isMoving)
             animator.SetBool("isRunning", true);
@@ -107,36 +105,6 @@ public class Jogador : MonoBehaviour
             }
         }
 
-    }
-
-    private void Jump()
-    {
-        if(jump)
-        {
-            rb.velocity = Vector2.up * jumpHeight;
-            jump = false;
-        }
-
-    }
-
-    private void Move()
-    {
-        rb.velocity = new Vector2(moveInput * maxSpeed, rb.velocity.y);
-    }
-
-    private void FixedUpdate()
-    {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        isMoving = !Mathf.Approximately(rb.velocity.magnitude, 0f);
-
-        if(isGrounded)
-        {
-            Jump();
-        }
-
-        Move();
-
-
         if(!facingRight && moveInput > 0)
         {
             Flip();
@@ -144,6 +112,30 @@ public class Jogador : MonoBehaviour
         {
             Flip();
         }
+        Move();
+    }
+
+    private void Jump()
+    {
+        rb.velocity = Vector2.up * jumpHeight;
+    }
+
+    private void Move()
+    {
+        rb.velocity = new Vector2(moveInput * maxSpeed, rb.velocity.y);
+    }
+
+    private bool IsGrounded()
+    {
+        var groundCast = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f,  Vector2.down, 1f, whatIsGround);
+
+        Debug.Log(groundCast.collider);
+
+        return groundCast.collider != null;
+
+    }
+    private void FixedUpdate()
+    {
     }
 
     private void Flip()
@@ -158,6 +150,7 @@ public class Jogador : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        bc = GetComponent<BoxCollider2D>();
 
     }
 }

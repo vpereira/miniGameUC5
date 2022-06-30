@@ -43,7 +43,7 @@ public class ArmadilhaFogo : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
 
-            if (collided && animator.GetBool("on"))
+            if (collided && animator.GetBool("on") && collision.CompareTag("Player"))
             {
                 jogador.TiraVida(1);
             }

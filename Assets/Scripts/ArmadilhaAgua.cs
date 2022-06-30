@@ -22,7 +22,7 @@ public class ArmadilhaAgua : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
 
-            if (collided == true)
+            if (collided == true && collision.CompareTag("Player"))
             {
                 jogador.TiraVida(1);
             }
