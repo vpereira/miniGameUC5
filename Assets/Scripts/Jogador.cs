@@ -74,14 +74,14 @@ public class Jogador : MonoBehaviour
     private void Update()
     {
 
-        // Se os pontos forem =< 0 reload a cena
+        // Se as vidas forem =< 0 reload a cena
         if (_vidas <= 0)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         // Jumping
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            Jump();
+            jump();
         } 
 
         moveInput = Input.GetAxis("Horizontal");
@@ -105,22 +105,26 @@ public class Jogador : MonoBehaviour
             }
         }
 
-        if(!facingRight && moveInput > 0)
-        {
-            Flip();
-        } else if(facingRight && moveInput < 0 )
-        {
-            Flip();
-        }
-        Move();
+        defineDirectionAndFlip();
+        move();
     }
 
-    private void Jump()
+    private void defineDirectionAndFlip()
+    {
+        if(!facingRight && moveInput > 0)
+        {
+            flip();
+        } else if(facingRight && moveInput < 0 )
+        {
+            flip();
+        }
+    }
+    private void jump()
     {
         rb.velocity = Vector2.up * jumpHeight;
     }
 
-    private void Move()
+    private void move()
     {
         rb.velocity = new Vector2(moveInput * maxSpeed, rb.velocity.y);
     }
@@ -134,11 +138,8 @@ public class Jogador : MonoBehaviour
         return groundCast.collider != null;
 
     }
-    private void FixedUpdate()
-    {
-    }
 
-    private void Flip()
+    private void flip()
     {
         facingRight = !facingRight;
         Vector3 scaler = transform.localScale;

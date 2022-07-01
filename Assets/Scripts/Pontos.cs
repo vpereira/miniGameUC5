@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class Pontos : MonoBehaviour
 {
@@ -9,11 +9,11 @@ public class Pontos : MonoBehaviour
     private Jogador jogador;
 
     [SerializeField]
-    private TextMeshProUGUI textScore;
+    private Text textScore;
 
     // Update is called once per frame
     void Update()
     {
-        textScore.text = $"Pontos: {jogador.Pontos} ";
+        textScore.text = $"Score: {jogador.Pontos} ";
     }
 }
