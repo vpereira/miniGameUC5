@@ -39,7 +39,7 @@ public class ArmadilhaFogo : MonoBehaviour
         // TODO do we need to check if we are touching a player?
         collided = true;
 
-        while(collided)
+        while (collided)
         {
             yield return new WaitForSeconds(0.5f);
 

@@ -35,11 +35,11 @@ public class InimigoPlanta : MonoBehaviour
     }
     private void Update()
     {
-        if(inimigoOnRange)
+        if (inimigoOnRange)
         {
             fireballTimer -= Time.deltaTime;
 
-            if(fireballTimer <= 0f)
+            if (fireballTimer <= 0f)
             {
                 animator.SetBool("onSight", true);
                 StartCoroutine(WaitAndShoot());

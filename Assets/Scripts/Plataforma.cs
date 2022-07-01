@@ -26,8 +26,8 @@ public class Plataforma : MonoBehaviour
         transform.localPosition = Vector3.MoveTowards(transform.position, proximaPosicao, _speed * Time.deltaTime);
 
         // invert destination
-        if(Vector3.Distance(transform.position, proximaPosicao) <= 0.1f)
+        if (Vector3.Distance(transform.position, proximaPosicao) <= 0.1f)
             proximaPosicao = proximaPosicao != posInicio ? posInicio : posFim;
     }
-    
+
 }

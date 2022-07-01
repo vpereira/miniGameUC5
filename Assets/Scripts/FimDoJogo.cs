@@ -26,9 +26,9 @@ public class FimDoJogo : MonoBehaviour
 
     private void Update()
     {
-        if(background.activeSelf)
+        if (background.activeSelf)
         {
-            if(Input.anyKey)
+            if (Input.anyKey)
             {
                 StartCoroutine(restartScene());
             }
@@ -36,7 +36,7 @@ public class FimDoJogo : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             background.SetActive(true);
         }

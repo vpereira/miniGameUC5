@@ -82,7 +82,7 @@ public class Jogador : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             jump();
-        } 
+        }
 
         moveInput = Input.GetAxis("Horizontal");
 
@@ -93,12 +93,13 @@ public class Jogador : MonoBehaviour
         else
             animator.SetBool("isRunning", false);
 
-        if(animator.GetBool("hit"))
+        if (animator.GetBool("hit"))
         {
-            if(hitTimer > 0)
+            if (hitTimer > 0)
             {
                 hitTimer -= Time.deltaTime;
-            } else
+            }
+            else
             {
                 animator.SetBool("hit", false);
                 hitTimer = 1f;
@@ -111,10 +112,11 @@ public class Jogador : MonoBehaviour
 
     private void defineDirectionAndFlip()
     {
-        if(!facingRight && moveInput > 0)
+        if (!facingRight && moveInput > 0)
         {
             flip();
-        } else if(facingRight && moveInput < 0 )
+        }
+        else if (facingRight && moveInput < 0)
         {
             flip();
         }
@@ -131,7 +133,7 @@ public class Jogador : MonoBehaviour
 
     private bool IsGrounded()
     {
-        var groundCast = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f,  Vector2.down, 1f, whatIsGround);
+        var groundCast = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 1f, whatIsGround);
 
         Debug.Log(groundCast.collider);
 
